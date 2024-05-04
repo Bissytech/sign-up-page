@@ -1,0 +1,50 @@
+.biggestDiv{
+    background-color: white;
+    
+}
+.theHead{
+    display: grid;
+  place-items: center;
+}
+.biggerDiv{
+    background-color:rgb(255,176,244) ;
+    width: 40vw;
+    height: 100vh;
+    display: block;
+    margin-left: 330px;
+  display: grid;
+  place-items: center;
+}
+.theInputs input{
+    display: block;
+    background-color: rgb(239,228,241);
+    height: 30px;
+    width: 250px;
+    color: black;
+    border-radius: 10px;
+   margin-bottom: 10px;
+   border: none;
+   padding: 10px;
+}
+.smallDiv{
+    display: grid;
+  place-items: center;
+  
+}
+.visibleIcon{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.visibleIcon button{
+    border: none;
+    background-color:rgb(239,228,241);
+    height: 40px;
+    width: 40px;
+   position: absolute;
+   margin-left: 220px;
+   
+}
+/* .visibleIcon button:hover{
+    color: rgba(128, 128, 128, 0.258);
+} */
