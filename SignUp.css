@@ -45,6 +45,10 @@
    margin-left: 220px;
    
 }
+#buttn{
+  height: 20px;
+  width: 100px;
+}
 /* .visibleIcon button:hover{
     color: rgba(128, 128, 128, 0.258);
 } */

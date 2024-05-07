@@ -5,125 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="logIn.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .theBlock {
+            background-color: rgb(255, 176, 244);
+            width: 40vw;
+            display: grid;
+            place-items: center;
+            height: 40vh;
+            margin: 50px 100px;
+        }
+        .theBlock input{
+            display: block;
+    background-color: rgb(239,228,241);
+    height: 30px;
+    width: 250px;
+    color: black;
+    border-radius: 10px;
+   margin-bottom: 10px;
+   border: none;
+   padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="biggestDiv">
-        <div class="biggerDiv">
-            <div class="theInputs">
-                <div class="theHead">
-                    <h2>Sign Up</h2>
 
-                    <h4>Create your account</h4>
-                </div>
-                <input id="inputName" placeholder="username" type="text">
-                <input id="inputMail" placeholder="Email" type="email">
-                <div class="visibleIcon">
-                    
-                    <input id="inputPassword" placeholder="Password" type="password">
-                    <button id="visibilityOne" onclick="visibleOn()">
-                        <span class="material-symbols-outlined">visibility</span>
-                    </button>
-                    <!-- for close eyes -->
-                    <button  onclick="visibleOff()"  id="visibilityOffOne"><span class="material-symbols-outlined">
-                            visibility_off
-                        </span></button>
-                    <!-- for close eyes -->
-                </div>
-
-                <div class="visibleIcon">
-                    <input id="secondPassword" placeholder="Confirm Password" type="password">
-
-                    <button onclick="visibleOne()"><span class="material-symbols-outlined">
-                            visibility
-                        </span></button>
-                    <!-- for close eyes -->
-                    <button onclick="visibleOffe()" id="visibilityOffTwo"><span class="material-symbols-outlined">
-                            visibility_off
-                        </span></button>
-                    <!-- for close eyes -->
-                </div>
-                <div class="smallDiv">
-                    <button onclick="signUp()">Sign up</button>
-                    <p>or</p>
-                    <button onclick="SignWithGoogle()">Sign in with Google</button>
-                    <h4>Already have an account? <a href=""> Login</a></h4>
-                </div>
-            </div>
-        </div>
+    <div class="theBlock">
+        <h1>Log In</h1>
+        <input placeholder="username or email address" id="username" type="text">
+        <input placeholder="password" id="myPassword" type="password">
+        <button onclick="login()"> login</button>
     </div>
+
 </body>
 
 </html>
 <script>
-    let visibilityOne = document.getElementById('visibilityOne')
-    document.getElementById("visibilityOffOne").style.display = "none";
-    document.getElementById("visibilityOffTwo").style.display = "none";
-    let name = document.getElementById('inputName')
-    let email = document.getElementById('inputMail')
-    let thePassword = document.getElementById('inputPassword')
-    let confirmPassword = document.getElementById('secondPassword')
+    let theUsername = document.getElementById('username')
+    let thePassword = document.getElementById('myPassword')
+    let collectedData = JSON.parse(localStorage.getItem('myDataBase'))
+    function login(params) {
+        let foundUser = collectedData.find((dataObj) => (dataObj.username === username.value || dataObj.mail === username.value) && dataObj.clientPassword === myPassword.value)
 
-    let collectedData = JSON.parse(localStorage.getItem('myDataBase')) || [];
+        let findUsername = collectedData.find((dataObj) => dataObj.username === username.value)
+        let findPassword = collectedData.find((dataObj) => dataObj.clientPassword === myPassword.value)
 
-
-    function signUp() {
-
-
-        if (inputName.value === "" || inputMail.value === "" || inputPassword.value === "" || secondPassword.value === "") {
-            alert('All fields are mandatory, kindly fill all field')
-        }
-        else if (inputPassword.value.length < 8) {
-            alert('password must be at least 8 digit')
-        } else if (inputPassword.value !== secondPassword.value) {
-            alert('password does not match')
+        if (foundUser) {
+            alert('login success')
+            localStorage.setItem("clientUsername", username.value)
+            window.location.href = 'welcomePage.html'
+        } else if (findUsername !== undefined && findPassword === undefined) {
+            alert('password is incorrect')
         }
         else {
-
-            let arrObj = {
-                username: inputName.value,
-                email: inputMail.value,
-                clientPassword: inputPassword.value,
-                secondPassword: secondPassword.value,
-            }
+            alert('user does not exist , please signup')
+            window.location.href = 'SignUp.html'
 
 
-            collectedData.push(arrObj);
-            localStorage.setItem('collectedData', JSON.stringify(collectedData))
-            alert('You have successfully signed up')
         }
     }
 
- function visibleOn() {
-if (inputPassword.type === "password") {
-    inputPassword.type = "text"
-    document.getElementById("visibilityOffOne").style.display = "block"
- } }
 
- function visibleOff(){
-    if (inputPassword.type === "text") {
-        document.getElementById("visibilityOffOne").style.display = "none"
-        inputPassword.type = "password"
-    } else {
-        
-    }
- }
 
- function visibleOne() {
-if (secondPassword.type === "password") {
-    secondPassword.type = "text"
-    document.getElementById("visibilityOffTwo").style.display = "block"
- } }
 
- function visibleOffe(){
-  if (secondPassword.type = "text") {
-    secondPassword.type = "password"
-      document.getElementById("visibilityOffTwo").style.display = "none"
-    
-}
- }
-    
+
 </script>

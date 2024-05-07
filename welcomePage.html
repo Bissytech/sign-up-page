@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#biggestDiv{
+    background-color: rgb(255, 176, 244);
+            width: 40vw;
+            display: grid;
+            place-items: center;
+            height: 40vh;
+            margin: 50px 100px;
+}
+
+
+    </style>
+</head>
+<body>
+
+
+    <div id="biggestDiv">
+    <div id="div1"> </div> 
+    <input type="file" id="myFile" onchange="loadFile()">
+
+    <div id="theWelcome">
+
+    </div>
+</div>
+</body>
+</html>
+<script>
+
+let myFile = document.getElementById('myFile')
+    let div = document.getElementById('div1')
+
+    function loadFile() {
+     let file  = myFile.files[0]
+     let reader = new FileReader()
+
+     reader.addEventListener('load' , (e)=> {
+        let data = e.target.result
+        console.log(data);
+        div.innerHTML = `<img width="100px" height="100px" src="${data}">`
+        
+     })
+
+     if (file) {
+        reader.readAsDataURL(file)
+     }
+
+        
+    }
+
+    // let button = document.getElementById('button')
+    // button.addEventListener('click' , function () {
+    //     alert('say hi')
+    // })
+
+    // let input = document.getElementById('input')
+    // input.addEventListener('keypress' , function () {
+    //     alert('say hi')
+    // })
+
+
+
+
+
+
+
+    // let collectedData = JSON.parse(localStorage.getItem('myDataBase'))
+    let theName = localStorage.getItem("clientUsername")
+   
+
+    theWelcome.innerHTML = `<h1>Welcome to your dashboard, ${theName}</h1>`
+    
+</script>

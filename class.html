@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="theInput" type="text"><button onclick="clickHere()">Countdown</button>
+
+    <h1>Show Names</h1>
+    <button onclick="prevbut()">Prev</button>
+    <button onclick="nextbut()">Next</button>
+    <h2 id="dispNames"></h2>
+</body>
+</html>
+<script>
+    let dispNames = document.getElementById('dispNames')
+let name = ['dan','wis','sam','jaguar','ben','dave']
+let index = 0
+
+dispNames.innerHTML = name[0]
+
+function nextbut(){
+    if (index === name.length - 1) {
+        index = 0
+    }else{index++}
+    dispNames.innerHTML = name[index]
+}
+function prevbut(){
+    if(index == 0){
+        index = name.length - 1
+    }else{index--}
+    dispNames.innerHTML = name[index]
+}
+
+    
+
+    
+
+    
+
+    
+
+    let theInput = document.getElementById('theInput')
+
+    function clickHere() {
+        let vv = setInterval(() => {
+            if (theInput.value == 0) {
+        clearInterval(vv);
+        return;
+        }
+            theInput.value--
+           myDisplay.innerHTML = theInput.value
+        }, 1000)
+        
+    }
+
+    
+    
+</script>
